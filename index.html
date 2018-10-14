@@ -15,21 +15,53 @@
   </head>
 
 <body>
-  <h1>Hangman Game</h1>
+  <audio controls autoplay>
+    <source src="assets/images/Map01 - Running from Evil.mp2" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <div id="logoWindow" class="text-align-center">
+    <img src="assets/images/logo.png" id="logo" width="300">
+    <div class="text-center" id="logoOverlay">
+      <img src="assets/images/MaN.png" class="logoFont">
+    </div>
+  </div>
+  
+  
+  
+  <div id="gameWindow">
+    
+    
 
-  <h2></h2>
+    <h2></h2>
 
-  <button class = "button" onclick="GetWord()">GetWord</button>
-  <br>
-  <div>Instructions</div>
-  <br>
-  <div id="currentWord"> Current Word: </div>
-  <br>
-  <div id="lettersGuessed"> Letters Guessed: </div>
-  <br>
-  <div id="lives">Lives: 5</div>
-  <br>
-  <div id="test">TEST</div>
+    <button class = "button" onclick="GetWord()">GetWord</button>
+    <br>
+    <br>
+    <div id="currentWord"> Current Word: </div>
+    <br>
+     
+    
+    <div id="test">TEST</div>
+    <div id="statusBar">
+      <div id="statusBarItems">
+        <div id="doomConsole">> Console Message</div>
+        <div id="doomConsoleLogo">
+          <p>CONSOLE MESSAGE</p>
+        </div>
+        <div id="lettersGuessed"></div>
+        <div id="lettersGuessedLogo">
+          <p>
+              LETTERS GUESSED
+          </p>
+        </div>
+        <div id="damage">
+          <img src="assets/images/doomguy100.gif" id="doomGuy" alt="Statusbar">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 

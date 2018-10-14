@@ -6,11 +6,12 @@ var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
 var gameBoard = [];                                             // current game
 var guesses = [];                                               // letters that have been guessed
 var lives;
+var damageImages = ["doomguy0.gif","doomguy20.gif","doomguy40.gif","doomguy60.gif","doomguy80.gif"]
 
 function refreshScreen () {
-  document.getElementById("currentWord").innerHTML = "Current Word: " + gameBoard;
-  document.getElementById("lettersGuessed").innerHTML = "Letters Guessed: " + guesses;
-  document.getElementById("lives").innerHTML = "Lives: " + lives;
+  document.getElementById("currentWord").innerHTML = gameBoard;
+  document.getElementById("lettersGuessed").innerHTML = guesses;
+  document.getElementById("doomConsole").innerHTML = "Lives: " + lives;
 }
 
 document.addEventListener('keypress', (event) => {
@@ -55,7 +56,8 @@ function letterInput (guess) {
   }
   if (minusLife == true) {
     lives --;
-    document.getElementById("lives").innerHTML = "Lives: " + lives;
+    document.getElementById("damage").innerHTML = "<img src=\"assets/images/" + damageImages[lives] + "\" id=\"doomGuy\" alt=\"Statusbar\">";
+    document.getElementById("doomConsole").innerHTML = "Lives: " + lives;
   }
   if (lives == 0) {
     document.getElementById("test").innerHTML = "GAME OVER";
@@ -67,8 +69,9 @@ function letterInput (guess) {
 
 function GetWord () {
   lives = 5;
-  document.getElementById("lives").innerHTML = "Lives: 5";
-  document.getElementById("lettersGuessed").innerHTML = "Letters Guessed:";
+  document.getElementById("doomConsole").innerHTML = "Lives: 5";
+  document.getElementById("lettersGuessed").innerHTML = "";
+  document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
   gameBoard = [];
   guesses = [];
   guessesIndex = 0;
@@ -87,6 +90,6 @@ function GetWord () {
       }
     }
   }
-  document.getElementById("currentWord").innerHTML = "Current Word: " + gameBoard;
+  document.getElementById("currentWord").innerHTML = gameBoard;
   console.log("current word: " + words[wordIndex]);  
 }
