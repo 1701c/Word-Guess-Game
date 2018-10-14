@@ -72,6 +72,7 @@ function GetWord () {
   document.getElementById("doomConsole").innerHTML = "Lives: 5";
   document.getElementById("lettersGuessed").innerHTML = "";
   document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
+  document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/ourherodeath.gif\" id=\"charImage\" alt=\"charImage\">";
   gameBoard = [];
   guesses = [];
   guessesIndex = 0;
