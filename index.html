@@ -15,10 +15,10 @@
   </head>
 
 <body>
-  <audio controls autoplay>
+  <!-- <audio controls autoplay>
     <source src="assets/images/Map01 - Running from Evil.mp2" type="audio/mpeg">
     Your browser does not support the audio element.
-  </audio>
+  </audio> -->
   
   <div id="logoWindow" class="text-align-center">
     <img src="assets/images/logo.png" id="logo" width="300">
@@ -26,45 +26,22 @@
       <img src="assets/images/MaN.png" class="logoFont">
     </div>
   </div>
-  
-  
-  
   <div id="gameWindow">
+    <button class = "button" onclick="characters.newChar()">GetWord</button>
+    <div id="welcome">Press any key to begin!</div>
+    <div id="charImageBox"><img id="charImage" src="assets/images/our_hero.gif" width="50%"></div>
+    <div id="currentWord"></div>
     
-    
-
-    <h2></h2>
-
-    <button class = "button" onclick="GetWord()">GetWord</button>
-    
-    <div id="charImageBox">
-      <img id="charImage" src="assets/images/ourhero.gif">
-    </div>
-    
-    <div id="currentWord"> Current Word: </div>
-    <br>
-     
-    
-    <div id="test">TEST</div>
     <div id="statusBar">
       <div id="statusBarItems">
-        <div id="doomConsole">> Console Message</div>
-        <div id="doomConsoleLogo">
-          <p>CONSOLE MESSAGE</p>
-        </div>
+        <div id="doomConsole">> cd doom-man<br>> doom-man.exe</div>
+        <div id="doomConsoleLogo"><p>CONSOLE MESSAGE</p></div>
         <div id="lettersGuessed"></div>
-        <div id="lettersGuessedLogo">
-          <p>
-              LETTERS GUESSED
-          </p>
-        </div>
-        <div id="damage">
-          <img src="assets/images/doomguy100.gif" id="doomGuy" alt="Statusbar">
-        </div>
+        <div id="lettersGuessedLogo"><p>LETTERS GUESSED</p></div>
+        <div id="damage"><img src="assets/images/doomguy100.gif" id="doomGuy" alt="Statusbar"></div>
       </div>
     </div>
   </div>
-
 </body>
 
 
