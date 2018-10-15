@@ -12,9 +12,13 @@ p {
   font-size: 10pt;
 }
 
-h1 {
+/* h1 {
   text-align: center;
-}
+} */
+
+/* h2 {
+  line-height: 150%;
+} */
 
 #logoWindow {
   width: 640px;
@@ -36,25 +40,28 @@ h1 {
 }
 
 .logoFont {
-  /* position: absolute; */
-  top: 0px;
-  width: 20%;
-  /* margin-left: 0px;
-  margin-right: 0px; */
+  margin: 0 auto;
+  width: 120px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: 10px;
 }
 
 #gameWindow {
   width: 640px;
   height: 480px;
-  /* background-color: red; */
   margin: auto;
   position: relative;
   background-image: url("../images/background.png");
 }
 
 #welcome {
-  width: 100%;
+  position: relative;
+  top: 50px;
   text-align: center;
+  font-size: 15pt;
+  line-height: 150%;
 }
 
 #charImageBox{
@@ -62,12 +69,9 @@ h1 {
   height: 250px;
   position: absolute;
   bottom: 110px;
-  /* text-align: center; */
-  /* bottom: 100px; */
 }
 
 #charImage{
-  /* display: block; */
   margin: 0 auto;
   zoom: 2;
   left: 0;
@@ -89,7 +93,6 @@ h1 {
 #statusBar {
   position: absolute;
   bottom: 0px;
-  /* right: 320px; */
   width: 640px;
   height: 77px;
 }
@@ -106,10 +109,9 @@ h1 {
   bottom: 1px;
   left: 0px;
   height: 72px;
-  width: 283px;
+  width: 284px;
   color: #ca1c00;
-  padding: 2px 10px 0px;
-  
+  padding: 2px 0px 0px;
   font-size: 14pt;
   word-wrap: break-word;
   line-height: 110%;
@@ -119,8 +121,6 @@ h1 {
   position: absolute;
   bottom: 3px;
   left: 35px;
-  /* height: 72px; */
-  /* width: 283px; */
   color: b9b9b9;
   width: 250px;
   height: 20px;
@@ -134,7 +134,7 @@ h1 {
   height: 72px;
   width: 283px;
   color: #ca1c00;
-  padding: 2px 10px 0px;
+  padding: 0px;
   text-align: center;
   font-size: 16pt;
   word-wrap: break-word;
@@ -145,8 +145,6 @@ h1 {
   position: absolute;
   bottom: 3px;
   right: -7px;
-  /* height: 72px; */
-  /* width: 283px; */
   color: b9b9b9;
   width: 250px;
   height: 20px;
@@ -155,7 +153,7 @@ h1 {
 #doomGuy {
   position: absolute;
   width: 68px;
-  height: 72px;
+  height: 74px;
   left: 287px;
   bottom: 1px;
 }

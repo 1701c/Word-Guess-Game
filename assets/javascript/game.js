@@ -6,150 +6,131 @@ var wins = 0;
 var loses = 0;
 
 var characters = {
-  charNames: ["ZOMBIEMAN", "SHOTGUN GUY", "HEAVY WEAPON DUDE", "IMP", "DEMON", "LOST SOUL", "CACODEMON", "HELL KNIGHT", 
-  "BARON OF HELL", "ARACHNOTRON", "PAIN ELEMENTAL", "REVENANT", "MANCUBUS", "ARCH-VILE", "SPIDER MASTERMIND",
-  "CYBERDEMON", "OUR HERO"],
+  charNames: ["ZOMBIEMAN", "SHOTGUN GUY", "HEAVY WEAPON DUDE", "IMP", "DEMON", "LOST SOUL", "CACODEMON", "HELL KNIGHT","BARON OF HELL", "ARACHNOTRON", "PAIN ELEMENTAL", "REVENANT", "MANCUBUS", "ARCH-VILE", "SPIDER MASTERMIND","CYBERDEMON", "OUR HERO"],
   damageImages: ["doomguy0.gif","doomguy20.gif","doomguy40.gif","doomguy60.gif","doomguy80.gif"],
-  charIndex: 16,     // index of current character
+  charIndex: 16,                                                                  // index of current character
+  current: "OUR HERO",                                                         
   charFile: "our_hero.gif",
   charFileDeath: "our_hero_death.gif",
-
-  setCharAt: function(str,index,chr) {
-    if(index > str.length-1) return str;
-    return str.substr(0,index) + chr + str.substr(index+1);
-  },
 
   newChar: function() {
     guesses = [];
     gameBoard = [];
-    this.charIndex = [Math.floor(Math.random()*this.charNames.length)]; // selects random char 
-    var fileName = this.charNames[this.charIndex];
-    for (i = 0; i < this.charNames[this.charIndex].length; i++) {
-      gameBoard[i] = " "; // adds spaces to gameboard
-      if ((fileName.charAt(i)) == " ") { // detects spaces in names
-        fileName = fileName.substr(0,i) + "_" + fileName.substr(i+1); // adds underscores to filenames
+    lives = 5;
+    // this.charIndex = [Math.floor(Math.random()*this.charNames.length)];        // selects random char
+    if (this.charIndex == 16) {                                                   // cycles characters
+      this.charIndex = 0;
+    }
+    else {
+      this.charIndex ++;
+    }
+    this.current = this.charNames[this.charIndex];                                // copys character name to variable
+    var fileName = this.current;
+    for (i = 0; i < this.current.length; i++) {
+      gameBoard[i] = " ";                                                         // adds spaces to gameboard
+      if ((fileName.charAt(i)) == " ") {                                          
+        fileName = fileName.substr(0,i) + "_" + fileName.substr(i+1);             // adds underscores to filenames
       }
       else {
         if ((fileName.charAt(i)) == "-") {
-          gameBoard[i] = "-"; // adds dashes to gameboard
+          gameBoard[i] = "-";                                                     // adds dashes to gameboard
         }
         else {
-          gameBoard[i] = "_"; // adds underscores to gameboard
+          gameBoard[i] = "_";                                                     // adds underscores to gameboard
         }          
       }
     }
     this.charFile = fileName.toLowerCase() + ".png";
     this.charFileDeath = fileName.toLowerCase() + "_death.gif"
-    document.getElementById("currentWord").innerHTML = gameBoard;
-    document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
-    document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + this.charFile + "\" id=\"charImage\" alt=\"charImage\">";
-    document.getElementById("doomConsole").innerHTML = "> begining game...<br>" + "> " + wins + " wins, " + loses + " loses"
-    document.getElementById("lettersGuessed").innerHTML = guesses;
-  },
+  }
 }
 
 var playGame = {
-  startGame: 1,
+  startGame: 'new',
   music: new Audio("assets/audio/title_music.mp2"),
   audio: new Audio("assets/audio/our_hero_death.wav"),
+
+  drawNewChar: function() {
+    document.getElementById("currentWord").innerHTML = gameBoard;
+    document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
+    document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFile + "\" id=\"charImage\" alt=\"charImage\">";
+    document.getElementById("doomConsole").innerHTML = "> begining game...<br>" + "> " + wins + " wins, " + loses + " loses"
+    document.getElementById("lettersGuessed").innerHTML = guesses;
+    document.getElementById("welcome").innerHTML = "";
+  },
   
   drawGameBoard: function() {
     document.getElementById("currentWord").innerHTML = gameBoard;
     document.getElementById("lettersGuessed").innerHTML = guesses;
-    // document.getElementById("doomConsole").innerHTML = "Lives: " + lives;
   },
 
   newGame: function() {
-    if ((this.startGame) == 1) {
-      console.log("initgame") 
-      document.getElementById("welcome").innerHTML = "Hopefully you know how to play Hangman. Your life depends on it!";
-      document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/our_hero_death.gif\" id=\"charImage\" width=\"50%\">";
-      // var music = new Audio("assets/audio/title_music.mp2");
-      this.music.play();
-      this.audio.play();
-      this.startGame = 2;    
-    }
-    else {
-      document.getElementById("welcome").innerHTML = "";
-      this.startGame = 0;
-      characters.newChar();
-      this.music.pause();
-      this.music = new Audio("assets/audio/running_from_evil.mp2");
-      this.music.play();
-    }
-    if ((this.startGame) == 3) {
-      this.startGame = 0;
-      document.getElementById("welcome").innerHTML = "The last word was " + characters.charNames[charIndex];
-      characters.newChar();
+    switch (this.startGame)  {
+      case 'new':   document.getElementById("welcome").innerHTML = "<h2>Hopefully you know how to play Hangman.<br> Your life depends on it!<br> Press any key to continue</h2>";
+                    document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/our_hero_death.gif\" id=\"charImage\" width=\"50%\">";
+                    this.music.play();                                            // welcome screen for first game
+                    this.audio.play();
+                    this.startGame = 'music';
+                    break;
+  
+      case 'music': this.music.pause();                                           // loads game music, continues to next case
+                    this.music = new Audio("assets/audio/running_from_evil.mp2");
+  
+      case 'next':  this.music.play();                                            // load next character, starts music
+                    characters.newChar();
+                    this.drawNewChar();
+                    this.startGame = 'no';
+                    break;
     }
   },
-
-  letterInput: function(guess) { // processes validated keypress                                      
+  
+  letterInput: function(guess) {                                                  // processes validated keypress                                      
     var minusLife = true;
-    for (j = 0; j < characters.charNames[characters.charIndex].length; j++) {
-      if (guess == characters.charNames[characters.charIndex].charAt(j)) {
-      minusLife = false;
-      gameBoard[j] = guess;
-      this.drawGameBoard();
+    for (j = 0; j < characters.current.length; j++) { 
+      if (guess == characters.current.charAt(j)) {                                
+        minusLife = false;                                                        // flags as incorrect letter
+        gameBoard[j] = guess;
+        document.getElementById("doomConsole").innerHTML = "> correct letter<br>> " + wins + " wins, " + loses + " loses";
+        this.drawGameBoard();
       }
     }
-    if (minusLife == true) {
+    if (minusLife == true) {                                                      // if letter is incorrect
       lives --;
       document.getElementById("damage").innerHTML = "<img src=\"assets/images/" + characters.damageImages[lives] + "\" id=\"doomGuy\" alt=\"Statusbar\">";
-      document.getElementById("doomConsole").innerHTML = "> incorrect letter<br>> " + wins + " wins, " + loses + " loses";
+      document.getElementById("doomConsole").innerHTML = "> incorrect letter<br>> " + wins + " wins, " + loses + " loses";  
     }
-    if (lives == 0) {
+    if (lives == 0) {                                                             // if 0 lives remaining
       loses ++;
-      console.log("losses++:" + loses);
       document.getElementById("doomConsole").innerHTML = "> you lose<br>> " + wins + " wins, " + loses + " loses";
-      this.startGame = 3;
+      document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
+      this.startGame = 'next';
     }
-    if (gameBoard.indexOf("_") == "-1") {
+    if (gameBoard.indexOf("_") == "-1") {                                         // if puzzle solved
       wins ++;
-      console.log("wins++:" + wins); 
       document.getElementById("doomConsole").innerHTML = "> you win<br>> " + wins + " wins, " + loses + " loses";
-      this.startGame =3;
+      document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
+      this.startGame = 'next';
     }
   },
 
   validateLetter: function(keyPress) {
-    if (this.startGame != 0) {
-      this.newGame(keyPress);
+    keyPress = keyPress.toUpperCase();
+    if (this.startGame != 'no') {                                                 // checks if new game
+      this.newGame();
     }
-    else {      
-      var minusLife = true;
-      console.log("lives != 0: " + (lives != 0));
-      console.log("gameBoard.indexOf(_)) != -1: " + (gameBoard.indexOf("_")!= "-1"));
-      if ((lives != 0) && (gameBoard.indexOf("_") != "-1")) {       // checks if game is over
-        var sameKey = false;
-        if (typeof(guesses[0]) != "undefined") {                    // doesn't run on first guess
-          for (i = 0; i < alphabet.length; i++) {
-            if (keyPress.toUpperCase() == alphabet[i]) {
-              if (guesses.indexOf(keyPress.toUpperCase()) != "-1") {   // checks guess has not already been selected
-                document.getElementById("doomConsole").innerHTML = "> duplicate key<br>> " + wins + " wins, " + loses + " loses";
-                sameKey = true;
-              }
-              if (sameKey == false) {                                   // if guess has not already been selected
-                // if (keyPress.toUpperCase() == alphabet[i]) {
-                guesses[guesses.length] = keyPress.toUpperCase();      // adds to array of guesses
-                this.drawGameBoard ();
-                // document.getElementById("lettersGuessed").innerHTML = "Letters Guessed: " + guesses;
-                this.letterInput(keyPress.toUpperCase());                   // sends valid guess
-                }
-              }
-            }
+    else {                                                                        
+      for (i = 0; i < alphabet.length; i++) {
+        if (keyPress == alphabet[i]) {
+          if (guesses.indexOf(keyPress) != "-1") {                              // check for duplicate letter
+            document.getElementById("doomConsole").innerHTML = "> duplicate letter<br>> " + wins + " wins, " + loses + " loses";
           }
-          else {                                                      // runs on first guess only
-              for (i = 0; i < alphabet.length; i++) {
-                if (keyPress.toUpperCase() == alphabet[i]) {
-                  guesses[guesses.length] = keyPress.toUpperCase();
-                  this.drawGameBoard ();
-                  // document.getElementById("lettersGuessed").innerHTML = "lettersGuessed: " + guesses;
-                  this.letterInput(keyPress.toUpperCase());                 // sends valid guess
-                }
-              }
-        }  
-      }
+          else {
+            guesses[guesses.length] = keyPress;                                 // adds to array of guesses
+            this.drawGameBoard ();
+            this.letterInput(keyPress);                                         // sends valid guess
+          }     
+        }
+      }  
     }
   }
 }
