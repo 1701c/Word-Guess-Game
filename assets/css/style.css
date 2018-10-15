@@ -12,14 +12,6 @@ p {
   font-size: 10pt;
 }
 
-/* h1 {
-  text-align: center;
-} */
-
-/* h2 {
-  line-height: 150%;
-} */
-
 #logoWindow {
   width: 640px;
   position: relative;
@@ -29,7 +21,8 @@ p {
 #logo {
   margin-left: auto;
 	margin-right: auto;
-	display: block;
+  display: block;
+  width: 300px;
 }
 
 #logoOverlay {
@@ -39,7 +32,7 @@ p {
   bottom: 10px;
 }
 
-.logoFont {
+#logoFont {
   margin: 0 auto;
   width: 120px;
   left: 0;
@@ -121,7 +114,6 @@ p {
   position: absolute;
   bottom: 3px;
   left: 35px;
-  color: b9b9b9;
   width: 250px;
   height: 20px;
 }
@@ -145,7 +137,6 @@ p {
   position: absolute;
   bottom: 3px;
   right: -7px;
-  color: b9b9b9;
   width: 250px;
   height: 20px;
 }
