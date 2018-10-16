@@ -37,7 +37,7 @@ var characters = {
 				}
 			}
 		}
-		this.charFile = fileName.toLowerCase() + ".png";
+    this.charFile = fileName.toLowerCase() + ".gif";
 		this.charFileDeath = fileName.toLowerCase() + "_death.gif"
 	}
 }
@@ -65,7 +65,7 @@ var playGame = {
 		switch (this.startGame) {
 			case 'new':
 				document.getElementById("welcome").innerHTML = "<h2>Hopefully you know how to play Hangman.<br> Your life depends on it!<br> Press any key to continue</h2>";
-				document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/our_hero_death.gif\" id=\"charImage\" width=\"200\">";
+				document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/our_hero_death.gif\" id=\"charImage\">";
 				this.music.play(); // welcome screen for first game
 				this.audio.play();
 				this.startGame = 'music';
@@ -107,7 +107,9 @@ var playGame = {
 		}
 		if (gameBoard.indexOf("_") == "-1") { // if puzzle solved
 			wins++;
-			document.getElementById("doomConsole").innerHTML = "> you win<br>> " + wins + " wins, " + loses + " loses";
+      document.getElementById("doomConsole").innerHTML = "> you win<br>> " + wins + " wins, " + loses + " loses";
+      console.log(characters.charFileDeath);
+      document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFileDeath + "\" id=\"charImage\" alt=\"charImage\">";
 			document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
 			this.startGame = 'next';
 		}
