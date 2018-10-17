@@ -10,8 +10,9 @@ var characters = {
 	damageImages: ["doomguy0.gif", "doomguy20.gif", "doomguy40.gif", "doomguy60.gif", "doomguy80.gif"],
 	charIndex: 16, // index of current character
 	current: "OUR HERO",
-	charFile: "our_hero.gif",
-	charFileDeath: "our_hero_death.gif",
+  charFile: "our_hero",  
+  // charFileDeath: "our_hero_death.gif",
+  charSound: new Audio("assets/audio/our_hero_death.wav"),
 
 	newChar: function () {
 		guesses = [];
@@ -37,8 +38,9 @@ var characters = {
 				}
 			}
 		}
-    this.charFile = fileName.toLowerCase() + ".gif";
-		this.charFileDeath = fileName.toLowerCase() + "_death.gif"
+    this.charFile = fileName.toLowerCase();
+    this.charSound = new Audio("assets/audio/" + this.charFile + "_death.wav");
+    // this.charFileDeath = fileName.toLowerCase() + "_death.gif"
 	}
 }
 
@@ -50,7 +52,7 @@ var playGame = {
 	drawNewChar: function () {
 		document.getElementById("currentWord").innerHTML = gameBoard;
 		document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
-		document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFile + "\" id=\"charImage\" alt=\"charImage\">";
+		document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFile + ".gif\" id=\"charImage\" alt=\"charImage\">";
 		document.getElementById("doomConsole").innerHTML = "> begining game...<br>" + "> " + wins + " wins, " + loses + " loses"
 		document.getElementById("lettersGuessed").innerHTML = guesses;
 		document.getElementById("welcome").innerHTML = "";
@@ -109,7 +111,8 @@ var playGame = {
 			wins++;
       document.getElementById("doomConsole").innerHTML = "> you win<br>> " + wins + " wins, " + loses + " loses";
       console.log(characters.charFileDeath);
-      document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFileDeath + "\" id=\"charImage\" alt=\"charImage\">";
+      document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFile + "_death.gif\" id=\"charImage\" alt=\"charImage\">";
+      characters.charSound.play();
 			document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
 			this.startGame = 'next';
 		}
