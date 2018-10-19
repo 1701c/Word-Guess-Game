@@ -15,7 +15,7 @@ p {
 #logoWindow {
   width: 640px;
   position: relative;
-  margin: auto;
+  /* margin: auto; */
 }
 
 #logo {
@@ -44,7 +44,7 @@ p {
 #gameWindow {
   width: 640px;
   height: 480px;
-  margin: auto;
+  /* margin: auto; */
   position: relative;
   background-image: url("../images/wallpaper2.jpg");
 }
@@ -171,7 +171,7 @@ p {
 
 #keyboard {
   width: 640px;
-  margin: 40px auto 0px;
+  /* margin: 40px auto 0px; */
   text-align: center;
 }
 
@@ -186,7 +186,7 @@ p {
 #mobileControls {
   padding-top: 20px;
   text-align: center;
-  margin: auto;
+  /* margin: auto; */
   width: 640px;
 }
 
