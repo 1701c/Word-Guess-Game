@@ -4,14 +4,14 @@ var guesses = [];
 var lives = 5;
 var wins = 0;
 var loses = 0;
+var kbState = false;
 
 var characters = {
-	charNames: ["ZOMBIEMAN", "SHOTGUN GUY", "HEAVY WEAPON DUDE", "IMP", "DEMON", "LOST SOUL", "CACODEMON", "HELL KNIGHT", "BARON OF HELL", "ARACHNOTRON", "PAIN ELEMENTAL", "REVENANT", "MANCUBUS", "ARCH-VILE", "SPIDER MASTERMIND", "CYBERDEMON", "OUR HERO"],
-	damageImages: ["doomguy0.gif", "doomguy20.gif", "doomguy40.gif", "doomguy60.gif", "doomguy80.gif"],
-	charIndex: 16, // index of current character
-	current: "OUR HERO",
-  charFile: "our_hero",  
-  // charFileDeath: "our_hero_death.gif",
+  charNames: ["ZOMBIEMAN", "SHOTGUN GUY", "HEAVY WEAPON DUDE", "IMP", "DEMON", "LOST SOUL", "CACODEMON", "HELL KNIGHT", "BARON OF HELL", "ARACHNOTRON", "PAIN ELEMENTAL", "REVENANT", "MANCUBUS", "ARCH-VILE", "SPIDER MASTERMIND", "CYBERDEMON", "OUR HERO"],
+	damageImages: ["our_hero_death2.gif", "doomguy20.gif", "doomguy40.gif", "doomguy60.gif", "doomguy80.gif"],
+	charIndex: 16,                // index of current character
+  current: "OUR HERO",          // current word
+  charFile: "our_hero",         // converted for filenames
   charSound: new Audio("assets/audio/our_hero_death.wav"),
 
 	newChar: function () {
@@ -19,7 +19,7 @@ var characters = {
 		gameBoard = [];
 		lives = 5;
 		// this.charIndex = [Math.floor(Math.random()*this.charNames.length)];        // selects random char
-		if (this.charIndex == 16) { // cycles characters
+		if (this.charIndex == 16) {                                                   // cycles characters
 			this.charIndex = 0;
 		} else {
 			this.charIndex++;
@@ -40,34 +40,39 @@ var characters = {
 		}
     this.charFile = fileName.toLowerCase();
     this.charSound = new Audio("assets/audio/" + this.charFile + "_death.wav");
-    // this.charFileDeath = fileName.toLowerCase() + "_death.gif"
 	}
 }
 
 var playGame = {
 	startGame: 'new',
 	music: new Audio("assets/audio/title_music.mp2"),
-	audio: new Audio("assets/audio/our_hero_death.wav"),
+  audio: new Audio("assets/audio/our_hero_death.wav"),
+  gunShot: new Audio("assets/audio/pistol.wav"),
+  grunt: new Audio("assets/audio/grunt.wav"),
+  playerDeath: new Audio("assets/audio/our_hero_death.wav"),
 
-	drawNewChar: function () {
-		document.getElementById("currentWord").innerHTML = gameBoard;
-		document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
-		document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFile + ".gif\" id=\"charImage\" alt=\"charImage\">";
+  drawGameBoard: function () {
+    document.getElementById("currentWord").innerHTML = "";
+    gameBoard.forEach(function(i) {
+      document.getElementById("currentWord").append(i);
+    });
+		document.getElementById("lettersGuessed").innerHTML = guesses;
+	},
+  
+  drawNewChar: function () {
+    this.drawGameBoard();
+    document.getElementById("damage").innerHTML = "<img src=\"assets/images/doomguy100.gif\" id=\"doomGuy\" alt=\"Statusbar\">";
+    document.getElementById("charImage").src=("assets/images/" + characters.charFile + ".gif");
 		document.getElementById("doomConsole").innerHTML = "> begining game...<br>" + "> " + wins + " wins, " + loses + " loses"
 		document.getElementById("lettersGuessed").innerHTML = guesses;
 		document.getElementById("welcome").innerHTML = "";
 	},
 
-	drawGameBoard: function () {
-		document.getElementById("currentWord").innerHTML = gameBoard;
-		document.getElementById("lettersGuessed").innerHTML = guesses;
-	},
-
 	newGame: function () {
 		switch (this.startGame) {
 			case 'new':
-				document.getElementById("welcome").innerHTML = "<h2>Hopefully you know how to play Hangman.<br> Your life depends on it!<br> Press any key to continue</h2>";
-				document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/our_hero_death.gif\" id=\"charImage\">";
+				document.getElementById("welcome").innerHTML = "<h2>Hopefully you know how to play Hangman.<br>Your life depends on it!<br>Press any key to continue</h2>";
+				document.getElementById("charImage").src=("assets/images/our_hero_death2.gif");
 				this.music.play(); // welcome screen for first game
 				this.audio.play();
 				this.startGame = 'music';
@@ -87,22 +92,29 @@ var playGame = {
 	},
 
 	letterInput: function (guess) { // processes validated keypress                                      
-		var minusLife = true;
+    var minusLife = true;
 		for (j = 0; j < characters.current.length; j++) {
 			if (guess == characters.current.charAt(j)) {
-				minusLife = false; // flags as incorrect letter
+        this.gunShot.currentTime = 0;
+        this.gunShot.play();
+        minusLife = false; // flags as incorrect letter
 				gameBoard[j] = guess;
 				document.getElementById("doomConsole").innerHTML = "> correct letter<br>> " + wins + " wins, " + loses + " loses";
 				this.drawGameBoard();
 			}
 		}
 		if (minusLife == true) { // if letter is incorrect
-			lives--;
-			document.getElementById("damage").innerHTML = "<img src=\"assets/images/" + characters.damageImages[lives] + "\" id=\"doomGuy\" alt=\"Statusbar\">";
+      this.grunt.currentTime = 0;
+      this.grunt.play();
+      lives--;
+      document.getElementById("doomGuy").src=("assets/images/" + characters.damageImages[lives]);
+      console.log(characters.damageImages[lives]);
 			document.getElementById("doomConsole").innerHTML = "> incorrect letter<br>> " + wins + " wins, " + loses + " loses";
 		}
 		if (lives == 0) { // if 0 lives remaining
-			loses++;
+      this.grunt.currentTime = 0;
+      this.playerDeath.play();
+      loses++;
 			document.getElementById("doomConsole").innerHTML = "> you lose<br>> " + wins + " wins, " + loses + " loses";
 			document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
 			this.startGame = 'next';
@@ -110,8 +122,7 @@ var playGame = {
 		if (gameBoard.indexOf("_") == "-1") { // if puzzle solved
 			wins++;
       document.getElementById("doomConsole").innerHTML = "> you win<br>> " + wins + " wins, " + loses + " loses";
-      console.log(characters.charFileDeath);
-      document.getElementById("charImageBox").innerHTML = "<img src=\"assets/images/" + characters.charFile + "_death.gif\" id=\"charImage\" alt=\"charImage\">";
+      document.getElementById("charImage").src=("assets/images/" + characters.charFile + "_death.gif");
       characters.charSound.play();
 			document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
 			this.startGame = 'next';
@@ -135,9 +146,24 @@ var playGame = {
 				}
 			}
 		}
-	}
+  },
+  
+  mobileKeyboard: function () {
+    kbState = !kbState;
+    document.getElementById("keyboard").innerHTML = "";
+    if (kbState == true) {
+      var newButton = "";
+      for (i = 0; i < alphabet.length; i++){
+        newButton = newButton + "<button class=\"button letterBtn\" onclick=\"playGame.validateLetter(alphabet[" +i +"])\">" + alphabet[i] + "</button>";  
+      }
+      document.getElementById("keyboard").innerHTML = newButton;                                       
+    }
+    else {
+      document.getElementById("keyboard").innerHTML = "";
+    }
+  }
 }
 
 document.addEventListener('keypress', (event) => {
-	playGame.validateLetter(event.key)
+  playGame.validateLetter(event.key);
 });

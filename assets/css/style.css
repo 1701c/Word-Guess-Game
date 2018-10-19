@@ -46,7 +46,7 @@ p {
   height: 480px;
   margin: auto;
   position: relative;
-  background-image: url("../images/background.png");
+  background-image: url("../images/wallpaper2.jpg");
 }
 
 #welcome {
@@ -71,8 +71,26 @@ p {
   right: 0;
   position: absolute;
   bottom: 10px;
+  z-index: 100;
 }
 
+#leftOfChar{
+  margin: 0 auto;
+  zoom: 2;
+  left: 70px;
+  position: absolute;
+  bottom: 25px;
+  z-index: 5;
+}
+
+#rightOfChar{
+  margin: 0 auto;
+  zoom: 2;
+  right: 70px;
+  position: absolute;
+  bottom: 25px;
+  z-index: 5;
+}
 
 #currentWord {
   width: 640px;
@@ -81,9 +99,11 @@ p {
   bottom: 60px;
   text-align: center;
   font-size: 20pt;
+  letter-spacing: 3px;
 }
 
 #statusBar {
+  background-image: url("../images/rockywall.png");
   position: absolute;
   bottom: 0px;
   width: 640px;
@@ -97,7 +117,7 @@ p {
 }
 
 #doomConsole {
-  background-color: #4f4f4f;
+  /* background-color: #4f4f4f; */
   position: absolute;
   bottom: 1px;
   left: 0px;
@@ -119,7 +139,7 @@ p {
 }
 
 #lettersGuessed {
-  background-color: #4f4f4f;
+  /* background-color: #4f4f4f; */
   position: absolute;
   bottom: 1px;
   right: 0px;
@@ -147,6 +167,18 @@ p {
   height: 74px;
   left: 287px;
   bottom: 1px;
+}
+
+#keyboard {
+  width: 640px;
+  margin: 40px auto 0px;
+  text-align: center;
+}
+
+.letterBtn {
+  padding: 20px;
+  margin: 5px;
+  background-color: black;
 }
 
 @font-face {
