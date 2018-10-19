@@ -69,26 +69,24 @@ var playGame = {
 	},
 
 	newGame: function () {
-    this.music.volume = 0.5;
-    this.audio.volume = 0.5;
-    
     switch (this.startGame) {
 			case 'new':
 				document.getElementById("welcome").innerHTML = "<h2>Hopefully you know how to play Hangman.<br>Your life depends on it!<br>Press any key to continue</h2>";
 				document.getElementById("charImage").src=("assets/images/our_hero_death2.gif");
-        this.music.volume = 0.5;
-        this.audio.volume = 0.5;
         this.music.play(); // welcome screen for first game
-				this.audio.play();
+        this.music.volume = 0.2;
+        this.audio.play();
+        this.audio.volume = 0.2;
 				this.startGame = 'music';
 				break;
 
 			case 'music':
 				this.music.pause(); // loads game music, continues to next case
-				this.music = new Audio("assets/audio/running_from_evil.mp2");
+        this.music = new Audio("assets/audio/running_from_evil.mp2");
 
-			case 'next':
-				this.music.play(); // load next character, starts music
+      case 'next':
+        this.music.play(); // load next character
+        this.music.volume = 0.2;
 				characters.newChar();
 				this.drawNewChar();
 				this.startGame = 'no';
@@ -98,16 +96,12 @@ var playGame = {
 
 	letterInput: function (guess) { // processes validated keypress                                      
     var minusLife = true;
-    characters.charSound.volume = 0.5;
-    this.playerDeath.volume = 0.5;
-    // this.audio.volume = 0.5;
-    // this.audio.volume = 0.5;
-    
-    
+
     for (j = 0; j < characters.current.length; j++) {
 			if (guess == characters.current.charAt(j)) {
         this.gunShot.currentTime = 0;
         this.gunShot.play();
+        this.gunShot.volume = 0.2;
         minusLife = false; // flags as incorrect letter
 				gameBoard[j] = guess;
 				document.getElementById("doomConsole").innerHTML = "> correct letter<br>> " + wins + " wins, " + loses + " loses";
@@ -125,16 +119,19 @@ var playGame = {
 		if (lives == 0) { // if 0 lives remaining
       this.grunt.currentTime = 0;
       this.playerDeath.play();
+      this.playerDeath.volume = 0.5;
       loses++;
 			document.getElementById("doomConsole").innerHTML = "> you lose<br>> " + wins + " wins, " + loses + " loses";
 			document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
 			this.startGame = 'next';
 		}
 		if (gameBoard.indexOf("_") == "-1") { // if puzzle solved
-			wins++;
+      wins++;
+      console.log("puzzle solved");
       document.getElementById("doomConsole").innerHTML = "> you win<br>> " + wins + " wins, " + loses + " loses";
       document.getElementById("charImage").src=("assets/images/" + characters.charFile + "_death.gif");
       characters.charSound.play();
+      characters.charSound.volume = 0.5;
 			document.getElementById("welcome").innerHTML = "The word was <br>" + characters.current + "<br>press any key to continue";
 			this.startGame = 'next';
 		}
