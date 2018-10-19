@@ -164,6 +164,14 @@ var playGame = {
   }
 }
 
+// function zoom(scale) {
+//   document.body.style.transform = "scale(" + scale + ")";
+//   document.body.style.transformOrigin = "top left";
+//   document.body.style.width = (100 / scale) + "%";
+//   document.body.style.height = (100 / scale) + "%";
+// };
+// zoom(2.25);
+
 document.addEventListener('keypress', (event) => {
   playGame.validateLetter(event.key);
 });

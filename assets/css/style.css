@@ -176,11 +176,11 @@ p {
 }
 
 .letterBtn {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   margin: 5px;
-  background-color: black;
-  font-size: 24pt;
+  
+  /* font-size: 26pt; */
 }
 
 #mobileControls {
@@ -190,6 +190,7 @@ p {
 
 .button {
   font-size:20pt;
+  background-color: black;
 }
 
 @font-face {
