@@ -41,6 +41,11 @@ p {
   bottom: 10px;
 }
 
+#wrapper {
+  margin: auto;
+  width:640px;
+}
+
 #gameWindow {
   width: 640px;
   height: 480px;
@@ -178,7 +183,7 @@ p {
 .letterBtn {
   width: 90px;
   height: 90px;
-  margin: 5px;
+  margin: 0px;
   
   /* font-size: 26pt; */
 }
