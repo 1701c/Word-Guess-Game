@@ -186,6 +186,8 @@ p {
 #mobileControls {
   padding-top: 20px;
   text-align: center;
+  margin: auto;
+  width: 640px;
 }
 
 .button {
