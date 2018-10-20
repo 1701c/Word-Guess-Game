@@ -41,6 +41,7 @@ var characters = {
 		}
     this.charFile = fileName.toLowerCase();
     this.charSound = new Audio("assets/audio/" + this.charFile + "_death.wav");
+    console.log("Current Word: " + this.current);
 	}
 }
 
@@ -109,7 +110,7 @@ var playGame = {
 				this.drawGameBoard();
 			}
 		}
-		if (minusLife == true) { // if letter is incorrect
+		if (minusLife) { // if letter is incorrect
       this.grunt.currentTime = 0;
       this.grunt.play();
       lives--;
@@ -160,7 +161,7 @@ var playGame = {
   mobileKeyboard: function () {
     kbState = !kbState;
     document.getElementById("keyboard").innerHTML = "";
-    if (kbState == true) {
+    if (kbState) {
       var newButton = "";
       for (i = 0; i < alphabet.length; i++){
         newButton = newButton + "<button class=\"button letterBtn\" onclick=\"playGame.validateLetter(querty.charAt(" +i +"))\">" + querty.charAt(i) + "</button>";
