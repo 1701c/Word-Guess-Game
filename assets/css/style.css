@@ -15,7 +15,6 @@ p {
 #logoWindow {
   width: 640px;
   position: relative;
-  /* margin: auto; */
 }
 
 #logo {
@@ -49,7 +48,6 @@ p {
 #gameWindow {
   width: 640px;
   height: 480px;
-  /* margin: auto; */
   position: relative;
   background-image: url("../images/wallpaper2.jpg");
 }
@@ -122,7 +120,6 @@ p {
 }
 
 #doomConsole {
-  /* background-color: #4f4f4f; */
   position: absolute;
   bottom: 1px;
   left: 0px;
@@ -144,7 +141,6 @@ p {
 }
 
 #lettersGuessed {
-  /* background-color: #4f4f4f; */
   position: absolute;
   bottom: 1px;
   right: 0px;
@@ -176,29 +172,24 @@ p {
 
 #keyboard {
   width: 640px;
-  /* margin: 40px auto 0px; */
   text-align: center;
-}
-
-.letterBtn {
-  width: 90px;
-  height: 90px;
-  margin: 0px;
-  
-  /* font-size: 26pt; */
 }
 
 #mobileControls {
   padding-top: 20px;
   text-align: center;
-  /* margin: auto; */
   width: 640px;
+  margin-bottom: 10px;
 }
 
 .button {
   font-size:20pt;
-  /* background-color: black; */
   background-image: url("../images/rockywall.png");
+}
+
+.letterBtn {
+  width: 63px;
+  height: 60px;
 }
 
 @font-face {

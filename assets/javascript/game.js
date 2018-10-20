@@ -1,4 +1,5 @@
-var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var querty = "QWERTYUIOPASDFGHJKLZXCVBNM";
 var gameBoard = [];
 var guesses = [];
 var lives = 5;
@@ -14,7 +15,7 @@ var characters = {
   charFile: "our_hero",         // converted for filenames
   charSound: new Audio("assets/audio/our_hero_death.wav"),
 
-	newChar: function () {
+  newChar: function () {
 		guesses = [];
 		gameBoard = [];
 		lives = 5;
@@ -143,7 +144,7 @@ var playGame = {
 			this.newGame();
 		} else {
 			for (i = 0; i < alphabet.length; i++) {
-				if (keyPress == alphabet[i]) {
+				if (keyPress == alphabet.charAt(i)) {
 					if (guesses.indexOf(keyPress) != "-1") { // check for duplicate letter
 						document.getElementById("doomConsole").innerHTML = "> duplicate letter<br>> " + wins + " wins, " + loses + " loses";
 					} else {
@@ -162,23 +163,17 @@ var playGame = {
     if (kbState == true) {
       var newButton = "";
       for (i = 0; i < alphabet.length; i++){
-        newButton = newButton + "<button class=\"button letterBtn\" onclick=\"playGame.validateLetter(alphabet[" +i +"])\">" + alphabet[i] + "</button>";  
+        newButton = newButton + "<button class=\"button letterBtn\" onclick=\"playGame.validateLetter(querty.charAt(" +i +"))\">" + querty.charAt(i) + "</button>";
+        if (i === 9 || i === 18) {
+          newButton = newButton + "<br>";
+        }  
       }
       document.getElementById("keyboard").innerHTML = newButton;                                       
-    }
-    else {
+    } else {
       document.getElementById("keyboard").innerHTML = "";
     }
   }
 }
-
-// function zoom(scale) {
-//   document.body.style.transform = "scale(" + scale + ")";
-//   document.body.style.transformOrigin = "top left";
-//   document.body.style.width = (100 / scale) + "%";
-//   document.body.style.height = (100 / scale) + "%";
-// };
-// zoom(2.25);
 
 document.addEventListener('keypress', (event) => {
   playGame.validateLetter(event.key);
