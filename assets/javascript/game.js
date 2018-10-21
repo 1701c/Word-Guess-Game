@@ -176,6 +176,20 @@ var playGame = {
   }
 }
 
+
+
 document.addEventListener('keypress', (event) => {
   playGame.validateLetter(event.key);
 });
+
+window.addEventListener('keydown',function(e){  // replaces enter on form with space
+  if (e.keyIdentifier =='U+000A' || e.keyIdentifier == 'Enter'|| e.keyCode == 13) {
+    console.log("enter 1");
+    if(e.target.nodeName == 'INPUT' && e.target.type == 'text') {
+      console.log("enter 2");
+      e.preventDefault();
+      playGame.validateLetter(" ");
+      return false;
+    } 
+  }
+},true);
