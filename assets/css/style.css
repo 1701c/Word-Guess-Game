@@ -200,7 +200,8 @@ input[type="text"] {
 
 input {
   width: 638px;
-  background-image: url("../images/rockywall.png");
+  /* background-image: url("../images/rockywall.png"); */
+  background-color: black;
   border-width: 0px;
   margin: 0px;
   padding: 1px 0px;
