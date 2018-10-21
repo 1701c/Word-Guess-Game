@@ -207,11 +207,12 @@ input {
   padding: 1px 0px;
   color: transparent;
   outline: none;
-  text-shadow: 0 0 0 black;
+  text-shadow: 0 0 0 #000000;
+}
 
-  &:focus {
-    outline: none;
-  }
+input:focus {
+  color: transparent;
+  text-shadow: 0px 0px 0px #000000;
 }
 
 /* #wrapper{
