@@ -181,7 +181,10 @@ var playGame = {
 // });
 
 window.addEventListener('keydown',function(e){  // replaces enter on form with space
-  if (e.keyIdentifier =='U+000A' || e.keyIdentifier == 'Enter'|| e.keyCode == 13) {
+	var input;
+	input = String.fromCharCode(e.keyCode);
+	console.log("input = " + input);
+	if (e.keyIdentifier =='U+000A' || e.keyIdentifier == 'Enter'|| e.keyCode == 13) {
     console.log("enter 1");
     if(e.target.nodeName == 'INPUT' && e.target.type == 'text') {
       console.log("enter 2");
@@ -189,11 +192,15 @@ window.addEventListener('keydown',function(e){  // replaces enter on form with s
       playGame.validateLetter(" ");
       return false;
     } else { 
-			console.log(event.key);
-			playGame.validateLetter(event.key);
+			console.log("else 2");
+			// console.log("converted letter = " + String.fromCharCode(e.keyCode));
+			// console.log(event.key + " " + e.keyCode);
+			playGame.validateLetter(input);
 		}
   } else { 
-		console.log(event.key);
-		playGame.validateLetter(event.key);
-	}
+		console.log("else 1");
+		// console.log("converted letter = " + String.fromCharCode(e.keyCode))
+		// console.log(event.key + " " + e.keyCode);
+		playGame.validateLetter(input);
+		}
 },true);
