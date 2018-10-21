@@ -158,25 +158,23 @@ var playGame = {
 		}
   },
   
-  mobileKeyboard: function () {
-    kbState = !kbState;
-    document.getElementById("keyboard").innerHTML = "";
-    if (kbState) {
-      var newButton = "";
-      for (i = 0; i < alphabet.length; i++){
-        newButton = newButton + "<button class=\"button letterBtn\" onclick=\"playGame.validateLetter(querty.charAt(" +i +"))\">" + querty.charAt(i) + "</button>";
-        if (i === 9 || i === 18) {
-          newButton = newButton + "<br>";
-        }  
-      }
-      document.getElementById("keyboard").innerHTML = newButton;                                       
-    } else {
-      document.getElementById("keyboard").innerHTML = "";
-    }
-  }
+  // mobileKeyboard: function () {          // draws onscreen keyboard
+  //   kbState = !kbState;
+  //   document.getElementById("keyboard").innerHTML = "";
+  //   if (kbState) {
+  //     var newButton = "";
+  //     for (i = 0; i < alphabet.length; i++){
+  //       newButton = newButton + "<button class=\"button letterBtn\" onclick=\"playGame.validateLetter(querty.charAt(" +i +"))\">" + querty.charAt(i) + "</button>";
+  //       if (i === 9 || i === 18) {
+  //         newButton = newButton + "<br>";
+  //       }  
+  //     }
+  //     document.getElementById("keyboard").innerHTML = newButton;                                       
+  //   } else {
+  //     document.getElementById("keyboard").innerHTML = "";
+  //   }
+  // }
 }
-
-
 
 document.addEventListener('keypress', (event) => {
   playGame.validateLetter(event.key);
