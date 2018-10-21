@@ -170,7 +170,7 @@ p {
   bottom: 1px;
 }
 
-#keyboard {
+/* #keyboard {
   width: 640px;
   text-align: center;
 }
@@ -180,18 +180,18 @@ p {
   text-align: center;
   width: 640px;
   margin-bottom: 10px;
-}
+} */
 
-.button {
+/* .button {
   font-size:20pt;
   background-image: url("../images/rockywall.png");
-}
+} */
 
-.letterBtn {
+/* .letterBtn {
   width: 63px;
   height: 60px;
   text-align: center;
-}
+} */
 
 input[type="text"] {
   font-size: 20pt !important;
@@ -211,11 +211,11 @@ input {
   cursor: pointer;
   line-height: 0; */
 }
-
+/* 
 input:focus {
   color: transparent;
   text-shadow: 0px 0px 0px #000000;
-}
+} */
 
 /* #wrapper{
   text-align: center;

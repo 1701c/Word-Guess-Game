@@ -82,12 +82,12 @@ var playGame = {
 				this.startGame = 'music';
 				break;
 
-			case 'music':
-				this.music.pause(); // loads game music, continues to next case
+			case 'music': // loads game music, continues to next case
+				this.music.pause(); 
         this.music = new Audio("assets/audio/running_from_evil.mp2");
 
-      case 'next':
-        this.music.play(); // load next character
+      case 'next': // load next character
+        this.music.play(); 
         this.music.volume = 0.2;
 				characters.newChar();
 				this.drawNewChar();
