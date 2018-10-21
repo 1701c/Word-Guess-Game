@@ -190,6 +190,7 @@ p {
 .letterBtn {
   width: 63px;
   height: 60px;
+  text-align: center;
 }
 
 @font-face {
