@@ -203,6 +203,7 @@ input {
   background-image: url("../images/rockywall.png");
   border-width: 0px;
   margin: 0px;
+  padding: 1px 0px;
 }
 
 /* #wrapper{
