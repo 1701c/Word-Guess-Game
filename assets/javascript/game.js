@@ -176,9 +176,9 @@ var playGame = {
   // }
 }
 
-document.addEventListener('keypress', (event) => {
-  playGame.validateLetter(event.key);
-});
+// document.addEventListener('keypress', (event) => {
+//   playGame.validateLetter(event.key);
+// });
 
 window.addEventListener('keydown',function(e){  // replaces enter on form with space
   if (e.keyIdentifier =='U+000A' || e.keyIdentifier == 'Enter'|| e.keyCode == 13) {
@@ -188,6 +188,12 @@ window.addEventListener('keydown',function(e){  // replaces enter on form with s
       e.preventDefault();
       playGame.validateLetter(" ");
       return false;
-    } 
-  }
+    } else { 
+			console.log(event.key);
+			playGame.validateLetter(event.key);
+		}
+  } else { 
+		console.log(event.key);
+		playGame.validateLetter(event.key);
+	}
 },true);
