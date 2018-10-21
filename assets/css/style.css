@@ -205,7 +205,8 @@ input {
   border-width: 0px;
   margin: 0px;
   padding: 1px 0px;
-  color: grey;
+  color: black;
+  outline: none;
 }
 
 /* #wrapper{
