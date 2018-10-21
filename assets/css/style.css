@@ -193,6 +193,10 @@ p {
   text-align: center;
 }
 
+input[type="text"] {
+  font-size: 16pt;
+}
+
 @font-face {
   font-family: 'DooM';
   src:url('../fonts/DooM.ttf.woff') format('woff'),
