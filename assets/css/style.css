@@ -199,15 +199,15 @@ input[type="text"] {
 }
 
 input {
-  width: 600px;
+  width: 638px;
   background-image: url("../images/rockywall.png");
   border-width: 0px;
   margin: 0px;
 }
 
-#wrapper{
+/* #wrapper{
   text-align: center;
-}
+} */
 
 @font-face {
   font-family: 'DooM';
