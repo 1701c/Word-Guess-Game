@@ -207,9 +207,9 @@ input {
   padding: 1px 0px;
   color: transparent;
   outline: none;
-  text-shadow: 0 0 0 #000000;
+  /* text-shadow: 0 0 0 #000000;
   cursor: pointer;
-  line-height: 0;
+  line-height: 0; */
 }
 
 input:focus {
