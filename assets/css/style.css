@@ -195,6 +195,18 @@ p {
 
 input[type="text"] {
   font-size: 20pt !important;
+  text-align: center;
+}
+
+input {
+  width: 630px;
+  background-image: url("../images/rockywall.png");
+  border-width: 0px;
+  margin: 0px;
+}
+
+#wrapper{
+  text-align: center;
 }
 
 @font-face {
